@@ -107,17 +107,17 @@ and you will receive:
 
 -------------- SUMMARY --------------
 The following operations took place:
-     15.12	Annie -> Troy, Britta, Abed : New pens
-      3.14	Troy -> Troy, Jeff : Matching scarves
-     10.00	Annie -> Britta, Annie, Pierce : Coffee
-     25.00	Britta -> Annie, Abed : Vegan dinner
-     30.00	Jeff -> Britta, Shirley, Abed : Stolen exams
-     25.00	Shirley -> Annie, Abed, Troy : Christmas decor
+     15.12 EUR	Annie -> Troy, Britta, Abed : New pens
+      3.14 EUR	Troy -> Troy, Jeff : Matching scarves
+     10.00 EUR	Annie -> Britta, Annie, Pierce : Coffee
+     25.00 EUR	Britta -> Annie, Abed : Vegan dinner
+     30.00 EUR	Jeff -> Britta, Shirley, Abed : Stolen exams
+     25.00 EUR	Shirley -> Annie, Abed, Troy : Christmas decor
 
 In order to set the balance to zero, the following payments must take place:
-     28.43	Abed -> Jeff
-      7.44	Abed -> Shirley
-      7.55	Troy -> Shirley
-      4.24	Troy -> Britta
-      2.37	Pierce -> Britta
-      0.95	Pierce -> Annie
+     28.43 EUR	Abed -> Jeff
+      7.44 EUR	Abed -> Shirley
+      7.55 EUR	Troy -> Shirley
+      4.24 EUR	Troy -> Britta
+      2.37 EUR	Pierce -> Britta
+      0.95 EUR	Pierce -> Annie

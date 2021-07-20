@@ -10,6 +10,7 @@ else:
     raise RuntimeError("Unrecognized input. Please write:\n    python example.py file_name.tsb")
 
 # Reading from file
+pay_share.Currency.symbol = "EUR"
 book = pay_share.Book()
 reader = pay_share.LogReader(book, file_name)
 book.load_from_file(reader)

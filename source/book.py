@@ -1,3 +1,4 @@
+from currency import Currency
 from operation import Operation
 from agent import Agent
 
@@ -61,14 +62,14 @@ class Book:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
             consumers = ", ".join([c.name for c in op.consumers])
-            report += "  " + amount + "\t" + op.payer.name + " -> " + consumers + " : " + op.description + "\n"
+            report += "  " + amount + " " + Currency.symbol + "\t" + op.payer.name + " -> " + consumers + " : " + op.description + "\n"
 
         report += "\nIn order to set the balance to zero, the following payments must take place:\n"
         for op in self.corrections:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
             consumers = ", ".join([c.name for c in op.consumers])
-            report += "  " + amount + "\t" + op.payer.name + " -> " + consumers + "\n"
+            report += "  " + amount + " " + Currency.symbol + "\t" + op.payer.name + " -> " + consumers + "\n"
 
         return report
 

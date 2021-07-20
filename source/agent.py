@@ -88,7 +88,7 @@ class Agent:
         for op in payed_for:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " EUR : " + op.description + "\n"
+            report += "  " + amount + " " + Currency.symbol +" : " + op.description + "\n"
         
         report += "You have benefited from the following operations:\n"
         if len(benefited_from) == 0:
@@ -96,8 +96,8 @@ class Agent:
         for op in benefited_from:
             amount = str(op.value_per_consumer())
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " EUR : " + op.description + "\n"
-        report += "This results in a balance of " + str(self.operation_balance()) + " EUR\n\n"
+            report += "  " + amount + " " + Currency.symbol +" : " + op.description + "\n"
+        report += "This results in a balance of " + str(self.operation_balance()) + " " + Currency.symbol + "\n\n"
         
         # Corrections
         payed_for = []
@@ -115,7 +115,7 @@ class Agent:
         for op in payed_for:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " EUR to " + op.consumers[0].name + "\n"
+            report += "  " + amount + " " + Currency.symbol + " to " +op.consumers[0].name + "\n"
 
         report += "and you will receive:\n"
         if len(benefited_from) == 0:
@@ -123,7 +123,7 @@ class Agent:
         for op in benefited_from:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " EUR from " + op.payer.name + "\n"
+            report += "  " + amount + " " + Currency.symbol + " from " + op.payer.name + "\n"
 
         return report
 

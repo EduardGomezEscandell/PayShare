@@ -1,4 +1,6 @@
 class Currency:
+    symbol = "EUR"
+
     def __init__(self, units : float = 0, cents : float = 0) -> None:
         if self.__isnumber(units) and self.__isnumber(cents):
             self.value = units * 100 + cents
