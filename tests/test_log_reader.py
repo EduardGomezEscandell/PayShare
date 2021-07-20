@@ -16,7 +16,7 @@ class WorkFolderScope:
         os.chdir(self.currentPath)
 
 
-class TestCurrency(unittest.TestCase):
+class TestLogReader(unittest.TestCase):
     def test_log_reader(self):
         book = Book()
 

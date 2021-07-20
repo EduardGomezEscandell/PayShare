@@ -2,7 +2,7 @@ import payshare_testing
 from book import Book
 import unittest
 
-class TestCurrency(unittest.TestCase):
+class TestBook(unittest.TestCase):
     def test_construction(self):
         b = Book()
         self.assertTrue(hasattr(b, "agents"))

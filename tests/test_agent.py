@@ -3,7 +3,7 @@ from agent import Agent
 from currency import Currency
 import unittest
 
-class TestCurrency(unittest.TestCase):
+class TestAgent(unittest.TestCase):
     def test_construction(self):
         alice = Agent("Alice")
         self.assertEqual(alice.name, "Alice")

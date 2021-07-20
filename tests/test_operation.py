@@ -4,7 +4,7 @@ from agent import Agent
 from currency import Currency
 import unittest
 
-class TestCurrency(unittest.TestCase):
+class TestOperation(unittest.TestCase):
     def test_construction(self):
         alice = Agent("Alice")
         bob = Agent("Bob")
