@@ -11,10 +11,12 @@ class TestCurrency(unittest.TestCase):
         x = Currency(3, 5)
         self.assertEqual(x.value, 305)
 
-    def test_construction_copy(self):
+    def test_construction_float(self):
         x = Currency(1.23)
         self.assertEqual(x.value, 123)
-
+    
+    def test_construction_copy(self):
+        x = Currency(1.23)
         y = Currency(x)
         self.assertEqual(y.value, 123)
     
@@ -70,6 +72,7 @@ class TestCurrency(unittest.TestCase):
         self.assertLess(x, 7.02)
         self.assertGreater(x, 7.00)
         self.assertGreaterEqual(x, 7.01)
+        self.assertLessEqual(x, 7.01)
 
 if __name__ == '__main__':
     unittest.main()
