@@ -1,3 +1,5 @@
+from currency import Currency
+
 class Operation:
     __id_counter = 0
 
@@ -5,10 +7,10 @@ class Operation:
         self.book = book
         self.payer = payer
         self.consumers = consumers
-        self.value = value
+        self.value = Currency(value)
         self.description = description
     
-    def value_per_agent(self):
+    def value_per_consumer(self):
         return self.value / len(self.consumers)
     
     @property

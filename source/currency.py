@@ -94,7 +94,13 @@ class Currency:
             return self <= Currency(other)    
 
     def __str__(self):
-        return str(int(self.value / 100)) + "." + str(int(self.value % 100))
+        units = str(int(self.value / 100))
+
+        cents = str(int(self.value % 100))
+        if len(cents) == 1:
+            cents = "0"+cents
+
+        return units + "." + cents
 
     @classmethod
     def __isnumber(cls, x):

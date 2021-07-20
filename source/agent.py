@@ -31,7 +31,7 @@ class Agent:
                 if self == op.payer:
                     self.__balance += op.value
                 if self in op.consumers:
-                    self.__balance -= op.value_per_agent()
+                    self.__balance -= op.value_per_consumer()
             self.balance_updated = True
             return self.__balance
 
@@ -44,7 +44,7 @@ class Agent:
                 if self == op.payer:
                     self.__correction_balance += op.value
                 if self in op.consumers:
-                    self.__correction_balance -= op.value_per_agent()
+                    self.__correction_balance -= op.value_per_consumer()
             self.corrections_updated = True
             return self.__correction_balance
 
@@ -61,6 +61,65 @@ class Agent:
             self.corrections.add(op)
             self.corrections_updated = False
     
+    def report(self):
+        report = ""
+        report += "Report for " + self.name + "\n\n"
+        number_width = 8
+        # Operations
+        payed_for = []
+        benefited_from = []
+        
+        for op in self.operations:
+            if self == op.payer:
+                payed_for.append(op)
+            if self in op.consumers:
+                benefited_from.append(op)
+         
+        report += "You have payed for the following operations:\n"
+        if len(payed_for) == 0:
+            report += "  (nothing)\n"
+        for op in payed_for:
+            amount = str(op.value)
+            amount = " " * (number_width - len(amount)) + amount
+            report += "  " + amount + " EUR : " + op.description + "\n"
+        
+        report += "You have benefited from the following operations:\n"
+        if len(benefited_from) == 0:
+            report += "  (nothing)\n"
+        for op in benefited_from:
+            amount = str(op.value_per_consumer())
+            amount = " " * (number_width - len(amount)) + amount
+            report += "  " + amount + " EUR : " + op.description + "\n"
+        report += "This results in a balance of " + str(self.operation_balance()) + " EUR\n\n"
+        
+        # Corrections
+        payed_for = []
+        benefited_from = []
+        
+        for op in self.corrections:
+            if self == op.payer:
+                payed_for.append(op)
+            if self in op.consumers:
+                benefited_from.append(op)
+        
+        report += "In order to set the balance to zero you will pay:\n"
+        if len(payed_for) == 0:
+            report += "  (nothing)\n"
+        for op in payed_for:
+            amount = str(op.value)
+            amount = " " * (number_width - len(amount)) + amount
+            report += "  " + amount + " EUR to " + op.consumers[0].name + "\n"
+
+        report += "and you will receive:\n"
+        if len(benefited_from) == 0:
+            report += "  (nothing)\n"
+        for op in benefited_from:
+            amount = str(op.value)
+            amount = " " * (number_width - len(amount)) + amount
+            report += "  " + amount + " EUR from " + op.payer.name + "\n"
+
+        return report
+
     def __eq__(self, o: object) -> bool:
         if isinstance(o, Agent):
             return self.id == o.id
