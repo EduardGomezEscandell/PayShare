@@ -1,6 +1,6 @@
 import payshare_testing
 from agent import Agent
-from currency import Currency
+from operation import Operation
 import unittest
 
 class TestAgent(unittest.TestCase):
@@ -22,7 +22,22 @@ class TestAgent(unittest.TestCase):
         self.assertEqual(alice_johnson, alice_duplicate)
         self.assertNotEqual(alice_johnson, bob)
         self.assertNotEqual(alice_johnson, alice_smith)
+    
+    def test_balance(self):
+        bob = Agent("Bob")
+        alice = Agent("Alice")
+        
+        self.assertEqual(bob.balance, 0)
+        
+        op1 = Operation(None, bob, [alice], 10.0, "Test transaction")
+        bob.append_operation(op1)
 
+        self.assertEqual(bob.balance, 10)
+                
+        op2 = Operation(None, alice, [bob], 5.0, "Test transaction #2")
+        bob.append_operation(op2)
+
+        self.assertEqual(bob.balance, 5)
 
 if __name__ == '__main__':
     unittest.main()

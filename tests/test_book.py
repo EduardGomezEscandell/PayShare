@@ -24,6 +24,7 @@ class TestBook(unittest.TestCase):
         self.assertEqual(book.operations[0].payer.name, "Alice")
         self.assertEqual(book.operations[0].payer, alice)
         self.assertEqual(len(book.agents), 3) # Alice, Joe and Bob
+        self.assertEqual(len(alice.operations), 1)
 
 
 if __name__ == '__main__':

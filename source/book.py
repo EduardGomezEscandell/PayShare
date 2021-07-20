@@ -12,6 +12,10 @@ class Book:
         _consumers = [self[c] for c in consumers]
         new_operation = Operation(self, _payer, _consumers, value, description)
         self.operations.append(new_operation)
+
+        for agent in _consumers + [_payer]:
+            agent.append_operation(new_operation)
+
         return new_operation
     
     def __getitem__(self, name : str) -> Agent:
