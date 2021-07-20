@@ -6,6 +6,12 @@ class Book:
         self.operations = []
         self.corrections = []
         self.agents = dict()
+
+    def load_from_file(self, log_reader):
+        log_reader.open()    
+        while log_reader.next():
+            pass
+        log_reader.close()
     
     def new_operation(self, payer : str, consumers : list, value : float, description : str):
         _payer = self[payer]
