@@ -74,5 +74,18 @@ class TestCurrency(unittest.TestCase):
         self.assertGreaterEqual(x, 7.01)
         self.assertLessEqual(x, 7.01)
 
+    def test_str(self):
+        x = Currency()
+        self.assertEqual(str(x),"0.00")
+
+        x = Currency(2.99)
+        self.assertEqual(str(x),"2.99")
+
+        x = Currency(-2.99)
+        self.assertEqual(str(x),"-2.99")
+
+        x = Currency(1,5)
+        self.assertEqual(str(x),"1.05")
+
 if __name__ == '__main__':
     unittest.main()

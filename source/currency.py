@@ -95,8 +95,8 @@ class Currency:
 
     def __str__(self):
         units = str(int(self.value / 100))
+        cents = str(int(abs(self.value) % 100))
 
-        cents = str(int(self.value % 100))
         if len(cents) == 1:
             cents = "0"+cents
 
