@@ -15,8 +15,9 @@ class Book:
         return new_operation
     
     def __getitem__(self, name : str) -> Agent:
-        if name in self.agents:
-            return self.agents[name]
-        new_agent = Agent(name)
-        self.agents[name] = new_agent
+        _name = name.strip()
+        if _name in self.agents:
+            return self.agents[_name]
+        new_agent = Agent(_name)
+        self.agents[_name] = new_agent
         return new_agent
