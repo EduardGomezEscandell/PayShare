@@ -32,7 +32,7 @@ class Book:
         self.agents[_name] = new_agent
         return new_agent
     
-    def compute_corrections(self):        
+    def compute_corrections(self):
         agents = list(self.agents.values())
 
         agents.sort(key=lambda a : -a.net_balance())
@@ -54,7 +54,24 @@ class Book:
 
             i_most_balance, i_least_balance = self.__find_most_and_least_balance(agents, i_most_balance, i_least_balance)
 
-            
+    def report(self):
+        report = "The following operations took place:\n"
+        number_width = 8
+        for op in self.operations:
+            amount = str(op.value)
+            amount = " " * (number_width - len(amount)) + amount
+            consumers = ", ".join([c.name for c in op.consumers])
+            report += "  " + amount + "\t" + op.payer.name + " -> " + consumers + " : " + op.description + "\n"
+
+        report += "\nIn order to set the balance to zero, the following payments must take place:\n"
+        for op in self.corrections:
+            amount = str(op.value)
+            amount = " " * (number_width - len(amount)) + amount
+            consumers = ", ".join([c.name for c in op.consumers])
+            report += "  " + amount + "\t" + op.payer.name + " -> " + consumers + "\n"
+
+        return report
+
     @classmethod
     def __find_most_and_least_balance(cls, agents, begin=None, end=None):
         """

@@ -9,6 +9,13 @@ class Operation:
         self.consumers = consumers
         self.value = Currency(value)
         self.description = description
+
+    @classmethod
+    def reset_id_counter(cls):
+        """
+        Dangerous method! Be sure no pre-existing operations exist.
+        """
+        cls.__id_counter = 0
     
     def value_per_consumer(self):
         return self.value / len(self.consumers)

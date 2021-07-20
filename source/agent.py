@@ -12,6 +12,13 @@ class Agent:
         
         self.balance_updated = False
         self.corrections_updated = False
+    
+    @classmethod
+    def reset_id_counter(cls):
+        """
+        Dangerous method! Be sure no pre-existing agents exist.
+        """
+        cls.__id_counter = 0
 
     @property
     def id(self):
