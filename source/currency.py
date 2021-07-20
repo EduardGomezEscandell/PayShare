@@ -19,7 +19,7 @@ class Currency:
         if isinstance(other, Currency):
             self.value += other.value
         else:
-            self.value += Currency(other)
+            self += Currency(other)
         return self
     
     def __sub__(self, other : float):
@@ -32,7 +32,7 @@ class Currency:
         if isinstance(other, Currency):
             self.value -= other.value
         else:
-            self.value -= Currency(other)
+            self -= Currency(other)
         return self
     
     def __mul__(self, other : float):
@@ -46,16 +46,50 @@ class Currency:
             return self
         raise TypeError("Curency can only be multiplied with integers and floats")
     
-    def __div__(self, other : float):
+    def __truediv__(self, other : float):
         if self.__isnumber(other):
             return Currency(0, self.value / other)
         raise TypeError("Curency can only be divided by integers and floats")
 
-    def __idiv__(self, other : float):
+    def __itruediv__(self, other : float):
         if self.__isnumber(other):
             self.value = int(self.value / other)
             return self
         raise TypeError("Curency can only be divided by integers and floats")
+
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, Currency):
+            return self.value == other.value
+        else:
+            return self == Currency(other)
+    
+    def __ne__(self, other: object) -> bool:
+        return not self==other
+    
+    def __gt__(self, other: object) -> bool:
+        if isinstance(other, Currency):
+            return self.value > other.value
+        else:
+            return self > Currency(other)
+    
+    def __lt__(self, other: object) -> bool:
+        if isinstance(other, Currency):
+            return self.value < other.value
+        else:
+            return self < Currency(other)
+    
+    def __ge__(self, other: object) -> bool:
+        if isinstance(other, Currency):
+            return self.value >= other.value
+        else:
+            return self >= Currency(other)
+
+    def __le__(self, other: object) -> bool:
+        if isinstance(other, Currency):
+            return self.value <= other.value
+        else:
+            return self <= Currency(other)    
+
 
     @classmethod
     def __isnumber(cls, x):
