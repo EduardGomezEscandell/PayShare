@@ -9,6 +9,9 @@ class Currency:
         else:
             raise TypeError("Currency object can only be initialized from integers, floats or other curency objects")
     
+    def __neg__(self):
+        return Currency(0, -self.value)
+
     def __add__(self, other : float):
         if isinstance(other, Currency):
             return Currency(0, self.value + other.value)
@@ -90,6 +93,8 @@ class Currency:
         else:
             return self <= Currency(other)    
 
+    def __str__(self):
+        return str(int(self.value / 100)) + "." + str(int(self.value % 100))
 
     @classmethod
     def __isnumber(cls, x):

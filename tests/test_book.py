@@ -26,6 +26,29 @@ class TestBook(unittest.TestCase):
         self.assertEqual(len(book.agents), 3) # Alice, Joe and Bob
         self.assertEqual(len(alice.operations), 1)
 
+    def test_correction(self):
+        book = Book()
+        
+        payer = "Alice"
+        consumers = ["Joe", "Bob", "Alice"]
+        amount = 9.00
+
+        op = book.new_operation(payer, consumers, amount, "Sample operation")
+
+        book.compute_corrections()
+
+        self.assertEqual(book["Alice"].operation_balance(), 6)
+        self.assertEqual(book["Joe"].operation_balance(), -3)
+        self.assertEqual(book["Bob"].operation_balance(), -3)
+
+        self.assertEqual(book["Alice"].correction_balance(), -6)
+        self.assertEqual(book["Joe"].correction_balance(), 3)
+        self.assertEqual(book["Bob"].correction_balance(), 3)
+
+        self.assertEqual(book["Alice"].net_balance(), 0)
+        self.assertEqual(book["Joe"].net_balance(), 0)
+        self.assertEqual(book["Bob"].net_balance(), 0)
+
 
 if __name__ == '__main__':
     unittest.main()

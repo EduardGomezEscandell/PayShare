@@ -7,9 +7,11 @@ class Agent:
     def __init__(self, name: str) -> None:
         self.name = name
         self.__balance = Currency()
-        self.operations = []
-        self.corrections = []
+        self.operations = set()
+        self.corrections = set()
+        
         self.balance_updated = False
+        self.corrections_updated = False
 
     @property
     def id(self):
@@ -20,32 +22,44 @@ class Agent:
             type(self).__id_counter += 1
             return self.__id
     
-    @property
-    def balance(self):
+    def operation_balance(self):
         if self.balance_updated:
             return self.__balance
         else:
             self.__balance = Currency()
             for op in self.operations:
-                if op.payer == self:
+                if self == op.payer:
                     self.__balance += op.value
-                else:
-                    self.__balance -= op.value
+                if self in op.consumers:
+                    self.__balance -= op.value_per_agent()
             self.balance_updated = True
             return self.__balance
 
-    def append_operation(self, op : Operation) -> bool:
+    def correction_balance(self):
+        if self.corrections_updated:
+            return self.__correction_balance
+        else:
+            self.__correction_balance = Currency()
+            for op in self.corrections:
+                if self == op.payer:
+                    self.__correction_balance += op.value
+                if self in op.consumers:
+                    self.__correction_balance -= op.value_per_agent()
+            self.corrections_updated = True
+            return self.__correction_balance
+
+    def net_balance(self):
+        return self.operation_balance() + self.correction_balance()
+
+    def append_operation(self, op : Operation) -> None:
         if self == op.payer or self in op.consumers:
-            self.operations.append(op)
+            self.operations.add(op)
             self.balance_updated = False
-            return True
-        return False
     
-    def append_correction(self, op : Operation) -> bool:
+    def append_correction(self, op : Operation) -> None:
         if self == op.payer or self in op.consumers:
-            self.corrections.append(op)
-            return True
-        return False
+            self.corrections.add(op)
+            self.corrections_updated = False
     
     def __eq__(self, o: object) -> bool:
         if isinstance(o, Agent):

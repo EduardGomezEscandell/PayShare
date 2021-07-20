@@ -27,17 +27,19 @@ class TestAgent(unittest.TestCase):
         bob = Agent("Bob")
         alice = Agent("Alice")
         
-        self.assertEqual(bob.balance, 0)
+        self.assertEqual(bob.operation_balance(), 0)
         
         op1 = Operation(None, bob, [alice], 10.0, "Test transaction")
         bob.append_operation(op1)
+        alice.append_operation(op1)
 
-        self.assertEqual(bob.balance, 10)
+        self.assertEqual(bob.operation_balance(), 10)
                 
         op2 = Operation(None, alice, [bob], 5.0, "Test transaction #2")
         bob.append_operation(op2)
+        alice.append_operation(op1)
 
-        self.assertEqual(bob.balance, 5)
+        self.assertEqual(bob.operation_balance(), 5)
 
 if __name__ == '__main__':
     unittest.main()
