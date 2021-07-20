@@ -1,6 +1,7 @@
 import sys
 
 file = __file__.replace('\\','/')
-top_folder = "/".join(file.split('/')[:-2])
+source_folder = "/".join(file.split('/')[:-2]) + "/source"
 
-sys.path.append(top_folder)
+
+sys.path.append(source_folder)
