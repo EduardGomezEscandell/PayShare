@@ -1,7 +1,7 @@
 {
     "agent_report" : [
         "Informe d'en/na $NAME\n\n",
-        "Ha pagat les operacions següents:\n",
+        "Has pagat les operacions següents:\n",
         "$OPERATIONS_PAYED",
         "Has disfrutat de les operacions següents:\n",
         "$OPERATIONS_CONSUMED",
@@ -12,7 +12,7 @@
         "$CORRECTIONS_TO_GET"
     ],
     "no_operation" : [
-        "cap"
+        "res"
     ],
     "book_report" : [
         "Les operacions següents han tingut lloc:\n",
