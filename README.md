@@ -88,3 +88,17 @@ In order to set the balance to zero, the following payments must take place:
       6.50 EUR  Bob -> Alice
 
 ```
+
+## Language
+You can select the language by adding a second argument if using `example.py`:
+```
+python example.py path/to/file.tsb es
+```
+The current list of languages and their labels are:
+- `en`: English
+- `es`: Spanish
+- `ca`: Catalan
+
+The following elements are not translated:
+- Exceptions
+- Operation descriptions: they are displayed in the language you write them in the `tsb` file.
