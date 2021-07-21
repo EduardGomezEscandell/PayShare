@@ -1,0 +1,23 @@
+{
+    "agent_report" : [
+        "Informe de $NAME\n\n",
+        "Has pagado las siguietes operaciones:\n",
+        "$OPERATIONS_PAYED",
+        "Has disfrutado de las siguientes operaciones:\n",
+        "$OPERATIONS_CONSUMED",
+        "Resultando en un balance de $OPERATION_BALANCE\n\n",
+        "Para restaurar el balance a cero, debes pagar:\n",
+        "$CORRECTIONS_TO_PAY",
+        "y debes recibir:\n",
+        "$CORRECTIONS_TO_GET"
+    ],
+    "no_operation" : [
+        "ninguna"
+    ],
+    "book_report" : [
+        "Las siguientes operaciones tubieron lugar:\n",
+        "$OPERATIONS",
+        "\nPara restaurar el balance a cero, los siguientes pagos deben ser efectuados:\n",
+        "$CORRECTIONS"
+    ]
+}

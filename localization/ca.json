@@ -1,0 +1,23 @@
+{
+    "agent_report" : [
+        "Informe d'en/na $NAME\n\n",
+        "Ha pagat les operacions següents:\n",
+        "$OPERATIONS_PAYED",
+        "Has disfrutat de les operacions següents:\n",
+        "$OPERATIONS_CONSUMED",
+        "Resultant en un balanç de $OPERATION_BALANCE\n\n",
+        "Per a restaurar el balanç a zero, has de pagar:\n",
+        "$CORRECTIONS_TO_PAY",
+        "i has de rebre::\n",
+        "$CORRECTIONS_TO_GET"
+    ],
+    "no_operation" : [
+        "cap"
+    ],
+    "book_report" : [
+        "Les operacions següents han tingut lloc:\n",
+        "$OPERATIONS",
+        "\nPer a restaurar el balanç a zero, els següents pagaments han de ser efectuats:\n",
+        "$CORRECTIONS"
+    ]
+}

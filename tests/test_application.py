@@ -6,6 +6,7 @@ from test_currency import TestCurrency
 from test_log_reader import TestLogReader
 from test_operation import TestOperation
 from test_full_process import TestFullProcess
+from test_localization import TestLocalization
 
 
 def AssembleTestSuite():
@@ -17,6 +18,7 @@ def AssembleTestSuite():
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestLogReader))
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestOperation))
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestFullProcess))
+    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestLocalization))
 
     return suite
 

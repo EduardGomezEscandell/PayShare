@@ -1,3 +1,4 @@
+from localization import Localization
 from currency import Currency
 from operation import Operation
 from agent import Agent
@@ -56,20 +57,27 @@ class Book:
             i_most_balance, i_least_balance = self.__find_most_and_least_balance(agents, i_most_balance, i_least_balance)
 
     def report(self):
-        report = "The following operations took place:\n"
+        localization = Localization.get()
+        report = localization["book_report"]
+        
+        buffer = ""
         number_width = 8
         for op in self.operations:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
             consumers = ", ".join([c.name for c in op.consumers])
-            report += "  " + amount + " " + Currency.symbol + "\t" + op.payer.name + " -> " + consumers + " : " + op.description + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + "\t" + op.payer.name + " -> " + consumers + " : " + op.description + "\n"
+        
+        report = report.replace("$OPERATIONS", buffer)
 
-        report += "\nIn order to set the balance to zero, the following payments must take place:\n"
+        buffer = ""
         for op in self.corrections:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
             consumers = ", ".join([c.name for c in op.consumers])
-            report += "  " + amount + " " + Currency.symbol + "\t" + op.payer.name + " -> " + consumers + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + "\t" + op.payer.name + " -> " + consumers + "\n"
+        
+        report = report.replace("$CORRECTIONS", buffer)
 
         return report
 

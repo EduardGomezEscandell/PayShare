@@ -1,9 +1,9 @@
+from localization import Localization
 from operation import Operation
 from currency import Currency
 
 class Agent:
     __id_counter = 0
-
     def __init__(self, name: str) -> None:
         self.name = name
         self.__balance = Currency()
@@ -69,10 +69,13 @@ class Agent:
             self.corrections_updated = False
     
     def report(self):
-        report = ""
-        report += "Report for " + self.name + "\n\n"
-        number_width = 8
+        localization = Localization.get()
+        report = localization["agent_report"]
+
+        report = report.replace("$NAME", self.name)
+        
         # Operations
+        number_width = 8
         payed_for = []
         benefited_from = []
         
@@ -82,22 +85,27 @@ class Agent:
             if self in op.consumers:
                 benefited_from.append(op)
          
-        report += "You have payed for the following operations:\n"
+        buffer = ""
         if len(payed_for) == 0:
-            report += "  (nothing)\n"
+            buffer += "  (" + localization["no_operation"] + ")\n"
         for op in payed_for:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " " + Currency.symbol +" : " + op.description + "\n"
+            buffer += "  " + amount + " " + Currency.symbol +" : " + op.description + "\n"
         
-        report += "You have benefited from the following operations:\n"
+        report = report.replace("$OPERATIONS_PAYED", buffer)
+        
+        buffer = ""
         if len(benefited_from) == 0:
-            report += "  (nothing)\n"
+            buffer += "  (" + localization["no_operation"] + ")\n"
         for op in benefited_from:
             amount = str(op.value_per_consumer())
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " " + Currency.symbol +" : " + op.description + "\n"
-        report += "This results in a balance of " + str(self.operation_balance()) + " " + Currency.symbol + "\n\n"
+            buffer += "  " + amount + " " + Currency.symbol +" : " + op.description + "\n"
+        report = report.replace("$OPERATIONS_CONSUMED", buffer)
+
+        buffer = str(self.operation_balance()) + " " + Currency.symbol
+        report = report.replace("$OPERATION_BALANCE", buffer)
         
         # Corrections
         payed_for = []
@@ -109,21 +117,23 @@ class Agent:
             if self in op.consumers:
                 benefited_from.append(op)
         
-        report += "In order to set the balance to zero you will pay:\n"
+        buffer = ""
         if len(payed_for) == 0:
-            report += "  (nothing)\n"
+            buffer += "  (" + localization["no_operation"] + ")\n"
         for op in payed_for:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " " + Currency.symbol + " to " +op.consumers[0].name + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + " to " +op.consumers[0].name + "\n"
+        report = report.replace("$CORRECTIONS_TO_PAY", buffer)
 
-        report += "and you will receive:\n"
+        buffer = ""
         if len(benefited_from) == 0:
-            report += "  (nothing)\n"
+            buffer += "  (" + localization["no_operation"] + ")\n"
         for op in benefited_from:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            report += "  " + amount + " " + Currency.symbol + " from " + op.payer.name + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + " from " + op.payer.name + "\n"
+        report = report.replace("$CORRECTIONS_TO_GET", buffer)
 
         return report
 
