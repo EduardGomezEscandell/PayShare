@@ -24,7 +24,7 @@ class TestLocalization(unittest.TestCase):
     def test_catalan(self):
         Localization.set("ca")
         loc = Localization.get()
-        self.assertEqual(loc["no_operation"],"cap")
+        self.assertEqual(loc["no_operation"],"res")
         loc["agent_report"]
         loc["book_report"]
         loc["to"]
