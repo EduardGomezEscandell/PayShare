@@ -18,7 +18,7 @@ class LogReader:
         self.file = None
     
     def open(self):
-        self.file = open(self.file_name, "r")
+        self.file = open(self.file_name, "r", encoding='utf8')
     
     def close(self):
         self.file.close()
