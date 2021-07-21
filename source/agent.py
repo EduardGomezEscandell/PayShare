@@ -123,7 +123,7 @@ class Agent:
         for op in payed_for:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            buffer += "  " + amount + " " + Currency.symbol + " to " +op.consumers[0].name + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + " " + localization["to"] + " " +op.consumers[0].name + "\n"
         report = report.replace("$CORRECTIONS_TO_PAY", buffer)
 
         buffer = ""
@@ -132,7 +132,7 @@ class Agent:
         for op in benefited_from:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            buffer += "  " + amount + " " + Currency.symbol + " from " + op.payer.name + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + " " + localization["from"] + " " + op.payer.name + "\n"
         report = report.replace("$CORRECTIONS_TO_GET", buffer)
 
         return report

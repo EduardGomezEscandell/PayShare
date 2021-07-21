@@ -9,6 +9,8 @@ class TestLocalization(unittest.TestCase):
         self.assertEqual(loc["no_operation"],"nothing")
         loc["agent_report"]
         loc["book_report"]
+        loc["to"]
+        loc["from"]
 
     def test_spanish(self):
         Localization.set("es")
@@ -16,6 +18,8 @@ class TestLocalization(unittest.TestCase):
         self.assertEqual(loc["no_operation"],"ninguna")
         loc["agent_report"]
         loc["book_report"]
+        loc["to"]
+        loc["from"]
 
     def test_catalan(self):
         Localization.set("ca")
@@ -23,6 +27,8 @@ class TestLocalization(unittest.TestCase):
         self.assertEqual(loc["no_operation"],"cap")
         loc["agent_report"]
         loc["book_report"]
+        loc["to"]
+        loc["from"]
 
 if __name__ == '__main__':
     unittest.main()

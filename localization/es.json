@@ -19,5 +19,11 @@
         "$OPERATIONS",
         "\nPara restaurar el balance a cero, los siguientes pagos deben ser efectuados:\n",
         "$CORRECTIONS"
+    ],
+    "to" : [
+        "a"
+    ],
+    "from" : [
+        "de"
     ]
 }

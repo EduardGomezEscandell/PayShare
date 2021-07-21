@@ -19,5 +19,11 @@
         "$OPERATIONS",
         "\nPer a restaurar el balanç a zero, els següents pagaments han de ser efectuats:\n",
         "$CORRECTIONS"
+    ],
+    "to" : [
+        "a"
+    ],
+    "from" : [
+        "de"
     ]
 }

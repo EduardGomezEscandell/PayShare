@@ -19,5 +19,11 @@
         "$OPERATIONS",
         "\nIn order to set the balance to zero, the following payments must take place:\n",
         "$CORRECTIONS"
+    ],
+    "to" : [
+        "to"
+    ],
+    "from" : [
+        "from"
     ]
 }
