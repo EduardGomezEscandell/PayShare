@@ -31,10 +31,6 @@ An example line might be:
 This would generate the following report:
 ```
 >> python .\example.py alice_and_bob.tsb
-
-Imported PayShare
-Visit https://github.com/EduardGomezEscandell/PayShare
-
 -------------------------------------
 Report for Alice
 
@@ -100,5 +96,5 @@ The current list of languages and their labels are:
 - `ca`: Catalan
 
 The following elements are not translated:
-- Exceptions
+- Error messgaes and exceptions
 - Operation descriptions: they are displayed in the language you write them in the `tsb` file.
