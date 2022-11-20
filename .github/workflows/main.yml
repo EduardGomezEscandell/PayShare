@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run tests
-        run: python3 test_application.py
+        run: python3 tests/test_application.py
