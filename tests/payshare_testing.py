@@ -1,10 +1,9 @@
 import sys, os
 
 file = __file__.replace('\\','/')
-source_folder = "/".join(file.split('/')[:-2]) + "/source"
-
-
+source_folder = "/".join(file.split('/')[:-2]) 
 sys.path.append(source_folder)
+
 
 class WorkFolderScope:
     def __init__(self, work_folder):

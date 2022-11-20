@@ -1,5 +1,6 @@
 import unittest
 
+import payshare_testing
 from test_agent import TestAgent
 from test_book import TestBook
 from test_currency import TestCurrency

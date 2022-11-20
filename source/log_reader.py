@@ -1,4 +1,4 @@
-from book import Book
+from source.book import Book
 
 class LogReader:
     """
