@@ -56,7 +56,7 @@ class Book:
 
             i_most_balance, i_least_balance = self.__find_most_and_least_balance(agents, i_most_balance, i_least_balance)
 
-    def report(self, loc: Localization|None = None) -> str:
+    def report(self, loc: Localization = None) -> str:
         if not loc:
             loc = Localization()
         report: str = loc["book_report"]
