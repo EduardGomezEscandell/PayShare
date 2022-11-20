@@ -15,11 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Update packages
-        run: |
-          set -e
-          sudo apt-get update
-          sudo apt-get upgrade python3
-
       - name: Run tests
         run: python3 tests/test_application.py
+

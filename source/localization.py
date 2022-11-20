@@ -2,7 +2,7 @@ import sys
 import json
 
 class Localization:
-    def __init__(self, language : str|None = None) -> None:
+    def __init__(self, language : str = None) -> None:
         self.language = language if language else "en"
 
         try:
