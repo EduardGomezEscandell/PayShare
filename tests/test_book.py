@@ -1,5 +1,4 @@
-import payshare_testing
-from book import Book
+from source.book import Book
 import unittest
 
 class TestBook(unittest.TestCase):

@@ -1,6 +1,4 @@
-import source
-
-import sys, os
+import sys
 
 file = __file__.replace('\\','/')
 
@@ -10,14 +8,9 @@ sys.path.append(source_folder)
 localization_folder = "/".join(file.split('/')[:-1]) + "/localization"
 sys.path.append(localization_folder)
 
-from agent import Agent
-from book import Book
-from currency import Currency
-from log_reader import LogReader
-from operation import Operation
-from localization import Localization
-
-print("")
-print("Imported PayShare")
-print("Visit https://github.com/EduardGomezEscandell/PayShare")
-print("")
+from source.agent import Agent as Agent
+from source.book import Book as Book
+from source.currency import Currency as Currency
+from source.log_reader import LogReader as LogReader
+from source.operation import Operation as Operation
+from source.localization import Localization as Localization

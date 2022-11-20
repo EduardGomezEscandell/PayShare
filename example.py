@@ -1,3 +1,4 @@
+#!/bin/python3
 import pay_share
 import sys
 
@@ -14,7 +15,7 @@ if len(sys.argv) > 3:
     raise RuntimeError("Unrecognized input. Please write:\n    python example.py <file_name.tsb> <language>")
 
 # Seting language
-pay_share.Localization.set(language)
+locale = pay_share.Localization(language)
 
 # Reading from file
 pay_share.Currency.symbol = "EUR"
@@ -28,7 +29,7 @@ book.compute_corrections()
 # Printing results
 for agent in book.agents.values():
     print("-------------------------------------")
-    print(agent.report())
+    print(agent.report(locale))
 
 print("\n-------------------------------------")
-print(book.report())
+print(book.report(locale))

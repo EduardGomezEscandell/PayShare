@@ -1,17 +1,17 @@
-from localization import Localization
-from operation import Operation
-from currency import Currency
+from source.localization import Localization
+from source.operation import Operation
+from source.currency import Currency
 
 class Agent:
-    __id_counter = 0
+    __id_counter: int = 0
     def __init__(self, name: str) -> None:
-        self.name = name
-        self.__balance = Currency()
-        self.operations = set()
-        self.corrections = set()
+        self.name: str = name
+        self.__balance: Currency = Currency()
+        self.operations: set[Operation] = set()
+        self.corrections: set[Operation] = set()
         
-        self.balance_updated = False
-        self.corrections_updated = False
+        self.balance_updated: bool= False
+        self.corrections_updated: bool = False
     
     @classmethod
     def reset_id_counter(cls):
@@ -29,7 +29,7 @@ class Agent:
             type(self).__id_counter += 1
             return self.__id
     
-    def operation_balance(self):
+    def operation_balance(self) -> Currency:
         if self.balance_updated:
             return self.__balance
         else:
@@ -42,7 +42,7 @@ class Agent:
             self.balance_updated = True
             return self.__balance
 
-    def correction_balance(self):
+    def correction_balance(self) -> Currency:
         if self.corrections_updated:
             return self.__correction_balance
         else:
@@ -55,7 +55,7 @@ class Agent:
             self.corrections_updated = True
             return self.__correction_balance
 
-    def net_balance(self):
+    def net_balance(self) -> Currency:
         return self.operation_balance() + self.correction_balance()
 
     def append_operation(self, op : Operation) -> None:
@@ -68,10 +68,10 @@ class Agent:
             self.corrections.add(op)
             self.corrections_updated = False
     
-    def report(self):
-        localization = Localization.get()
-        report = localization["agent_report"]
-
+    def report(self, loc: Localization = None) -> str:
+        if loc is None:
+            loc = Localization()
+        report: str = loc["agent_report"]
         report = report.replace("$NAME", self.name)
         
         # Operations
@@ -87,7 +87,7 @@ class Agent:
          
         buffer = ""
         if len(payed_for) == 0:
-            buffer += "  (" + localization["no_operation"] + ")\n"
+            buffer += "  (" + loc["no_operation"] + ")\n"
         for op in payed_for:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
@@ -97,7 +97,7 @@ class Agent:
         
         buffer = ""
         if len(benefited_from) == 0:
-            buffer += "  (" + localization["no_operation"] + ")\n"
+            buffer += "  (" + loc["no_operation"] + ")\n"
         for op in benefited_from:
             amount = str(op.value_per_consumer())
             amount = " " * (number_width - len(amount)) + amount
@@ -119,20 +119,20 @@ class Agent:
         
         buffer = ""
         if len(payed_for) == 0:
-            buffer += "  (" + localization["no_operation"] + ")\n"
+            buffer += "  (" + loc["no_operation"] + ")\n"
         for op in payed_for:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            buffer += "  " + amount + " " + Currency.symbol + " " + localization["to"] + " " +op.consumers[0].name + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + " " + loc["to"] + " " +op.consumers[0].name + "\n"
         report = report.replace("$CORRECTIONS_TO_PAY", buffer)
 
         buffer = ""
         if len(benefited_from) == 0:
-            buffer += "  (" + localization["no_operation"] + ")\n"
+            buffer += "  (" + loc["no_operation"] + ")\n"
         for op in benefited_from:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
-            buffer += "  " + amount + " " + Currency.symbol + " " + localization["from"] + " " + op.payer.name + "\n"
+            buffer += "  " + amount + " " + Currency.symbol + " " + loc["from"] + " " + op.payer.name + "\n"
         report = report.replace("$CORRECTIONS_TO_GET", buffer)
 
         return report
@@ -145,5 +145,5 @@ class Agent:
     def __ne__(self, o: object) -> bool:
         return not self.__eq__(o)
     
-    def __str__(self):
+    def __str__(self) -> str:
         return "<Agent with ID=" + str(self.id) + " and name " + str(self.name) + ">"

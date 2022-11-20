@@ -1,4 +1,4 @@
-from currency import Currency
+from source.currency import Currency
 
 class Operation:
     __id_counter = 0

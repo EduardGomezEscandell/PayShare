@@ -1,11 +1,9 @@
-import payshare_testing
-from localization import Localization
+from source.localization import Localization
 import unittest
 
 class TestLocalization(unittest.TestCase):
     def test_default(self):
-        Localization.global_localization = None
-        loc = Localization.get()
+        loc = Localization()
         self.assertEqual(loc["no_operation"],"nothing")
         loc["agent_report"]
         loc["book_report"]
@@ -13,8 +11,7 @@ class TestLocalization(unittest.TestCase):
         loc["from"]
 
     def test_spanish(self):
-        Localization.set("es")
-        loc = Localization.get()
+        loc = Localization("es")
         self.assertEqual(loc["no_operation"],"ninguna")
         loc["agent_report"]
         loc["book_report"]
@@ -22,8 +19,7 @@ class TestLocalization(unittest.TestCase):
         loc["from"]
 
     def test_catalan(self):
-        Localization.set("ca")
-        loc = Localization.get()
+        loc = Localization("ca")
         self.assertEqual(loc["no_operation"],"res")
         loc["agent_report"]
         loc["book_report"]

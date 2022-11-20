@@ -1,21 +1,21 @@
-from localization import Localization
-from currency import Currency
-from operation import Operation
-from agent import Agent
+from source.currency import Currency
+from source.operation import Operation
+from source.agent import Agent
+from source.localization import Localization
 
 class Book:
     def __init__(self):
-        self.operations = []
-        self.corrections = []
-        self.agents = dict()
+        self.operations: list[Operation] = []
+        self.corrections: list[Operation] = []
+        self.agents: dict[str, Agent] = dict()
 
-    def load_from_file(self, log_reader):
+    def load_from_file(self, log_reader) -> None:
         log_reader.open()    
         while log_reader.next():
             pass
         log_reader.close()
     
-    def new_operation(self, payer : str, consumers : list, value : float, description : str):
+    def new_operation(self, payer : str, consumers : list, value : float, description : str) -> Operation:
         _payer = self[payer]
         _consumers = [self[c] for c in consumers]
         new_operation = Operation(self, _payer, _consumers, value, description)
@@ -34,7 +34,7 @@ class Book:
         self.agents[_name] = new_agent
         return new_agent
     
-    def compute_corrections(self):
+    def compute_corrections(self) -> None:
         agents = list(self.agents.values())
 
         agents.sort(key=lambda a : -a.net_balance())
@@ -56,9 +56,10 @@ class Book:
 
             i_most_balance, i_least_balance = self.__find_most_and_least_balance(agents, i_most_balance, i_least_balance)
 
-    def report(self):
-        localization = Localization.get()
-        report = localization["book_report"]
+    def report(self, loc: Localization|None = None) -> str:
+        if not loc:
+            loc = Localization()
+        report: str = loc["book_report"]
         
         buffer = ""
         number_width = 8
@@ -82,9 +83,9 @@ class Book:
         return report
 
     @classmethod
-    def __find_most_and_least_balance(cls, agents, begin=None, end=None):
+    def __find_most_and_least_balance(cls, agents: list[Agent], begin=None, end=None) -> tuple[int, int]:
         """
-        Finds the agents with most positive and negative balances, gnoring those with zero balance.
+        Finds the agents with most positive and negative balances, ignoring those with zero balance.
         Searches only between begin and end.
         """
         if begin is None:
