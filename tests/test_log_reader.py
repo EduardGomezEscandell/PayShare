@@ -1,6 +1,6 @@
 import payshare_testing
-from source.book import Book
-from source.log_reader import LogReader
+from payshare.book import Book
+from payshare.log_reader import LogReader
 import unittest
 
 class TestLogReader(unittest.TestCase):

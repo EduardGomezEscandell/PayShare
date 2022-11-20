@@ -1,12 +1,13 @@
-from source.currency import Currency
-from source.operation import Operation
-from source.agent import Agent
-from source.localization import Localization
+from payshare.currency import Currency
+from payshare.operation import Operation
+from payshare.agent import Agent
+from payshare.localization import Localization
+from typing import List, Tuple
 
 class Book:
     def __init__(self):
-        self.operations: list[Operation] = []
-        self.corrections: list[Operation] = []
+        self.operations: List[Operation] = []
+        self.corrections: List[Operation] = []
         self.agents: dict[str, Agent] = dict()
 
     def load_from_file(self, log_reader) -> None:
@@ -83,7 +84,7 @@ class Book:
         return report
 
     @classmethod
-    def __find_most_and_least_balance(cls, agents: list[Agent], begin=None, end=None) -> tuple[int, int]:
+    def __find_most_and_least_balance(cls, agents: List[Agent], begin=None, end=None) -> Tuple[int, int]:
         """
         Finds the agents with most positive and negative balances, ignoring those with zero balance.
         Searches only between begin and end.

@@ -1,6 +1,6 @@
-from source.agent import Agent
-from source.operation import Operation
-from source.book import Book
+from payshare.agent import Agent
+from payshare.operation import Operation
+from payshare.book import Book
 import unittest
 
 class TestAgent(unittest.TestCase):

@@ -1,6 +1,6 @@
-from source.localization import Localization
-from source.operation import Operation
-from source.currency import Currency
+from payshare.localization import Localization
+from payshare.operation import Operation
+from payshare.currency import Currency
 
 class Agent:
     __id_counter: int = 0

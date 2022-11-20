@@ -1,8 +1,8 @@
 import payshare_testing
-from source.book import Book
-from source.log_reader import LogReader
-from source.agent import Agent
-from source.operation import Operation
+from payshare.book import Book
+from payshare.log_reader import LogReader
+from payshare.agent import Agent
+from payshare.operation import Operation
 import unittest
 
 class TestFullProcess(unittest.TestCase):

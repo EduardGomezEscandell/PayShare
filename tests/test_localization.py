@@ -1,4 +1,4 @@
-from source.localization import Localization
+from payshare.localization import Localization
 import unittest
 
 class TestLocalization(unittest.TestCase):

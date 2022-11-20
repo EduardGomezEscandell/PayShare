@@ -1,4 +1,4 @@
-from source.currency import Currency
+from payshare.currency import Currency
 import unittest
 
 class TestCurrency(unittest.TestCase):

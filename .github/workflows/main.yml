@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Update python3
+        run: python3 --version
+
       - name: Run tests
-        run: python3 tests/test_application.py
+        run: python3 tests/test_main.py
 

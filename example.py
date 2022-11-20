@@ -1,26 +1,33 @@
 #!/bin/python3
-import pay_share
+"""
+This example program shows how to use payshare in order to settle
+debts after a group activity.
+"""
+
 import sys
+import payshare
 
 # Defaults
-file_name = "tests/data/long_sample.tsb"
-language = "en"
+DEFAULT_FILENAME = "tests/data/long_sample.tsb"
+DEFAULT_LANGUAGE = ""
 
 # Input parsing
 if len(sys.argv) > 1:
-    file_name = sys.argv[1]
+    DEFAULT_FILENAME = sys.argv[1]
 if len(sys.argv) > 2:
-    language = sys.argv[2]
+    DEFAULT_LANGUAGE = sys.argv[2]
 if len(sys.argv) > 3:
-    raise RuntimeError("Unrecognized input. Please write:\n    python example.py <file_name.tsb> <language>")
+    print("""Unrecognized input. Please write:
+python example.py <file_name.tsb> <language>""")
+    sys.exit(1)
 
 # Seting language
-locale = pay_share.Localization(language)
+locale = payshare.Localization(DEFAULT_LANGUAGE)
 
 # Reading from file
-pay_share.Currency.symbol = "EUR"
-book = pay_share.Book()
-reader = pay_share.LogReader(book, file_name)
+payshare.Currency.symbol = "EUR"
+book = payshare.Book()
+reader = payshare.LogReader(book, DEFAULT_FILENAME)
 book.load_from_file(reader)
 
 # Computing

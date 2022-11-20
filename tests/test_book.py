@@ -1,4 +1,4 @@
-from source.book import Book
+from payshare.book import Book
 import unittest
 
 class TestBook(unittest.TestCase):

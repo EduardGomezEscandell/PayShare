@@ -1,6 +1,6 @@
-from source.operation import Operation
-from source.agent import Agent
-from source.currency import Currency
+from payshare.operation import Operation
+from payshare.agent import Agent
+from payshare.currency import Currency
 import unittest
 
 class TestOperation(unittest.TestCase):

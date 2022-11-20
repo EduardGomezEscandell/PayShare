@@ -1,4 +1,4 @@
-from source.currency import Currency
+from payshare.currency import Currency
 
 class Operation:
     __id_counter = 0
