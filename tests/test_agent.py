@@ -52,6 +52,7 @@ class TestAgent(unittest.TestCase):
         expected_text = ""                                     \
         "Report for Joe\n"                                     \
         "\n"                                                   \
+        "Total expenditure is 10.00 EUR\n"                     \
         "You have payed for the following operations:\n"       \
         "  (nothing)\n"                                        \
         "You have benefited from the following operations:\n"  \

@@ -33,6 +33,7 @@ class TestFullProcess(unittest.TestCase):
             with open("expected_output.txt", "r") as f:
                 expected_output = f.read()
             
+            self.maxDiff = None
             self.assertEqual(report, expected_output)
 
 if __name__ == '__main__':

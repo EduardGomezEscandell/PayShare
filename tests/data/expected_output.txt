@@ -1,6 +1,7 @@
 -------------------------------------
 Report for Annie
 
+Total expenditure is 24.16 EUR
 You have payed for the following operations:
      15.12 EUR : New pens
      10.00 EUR : Coffee
@@ -17,6 +18,7 @@ and you will receive:
 -------------------------------------
 Report for Troy
 
+Total expenditure is 14.94 EUR
 You have payed for the following operations:
       3.14 EUR : Matching scarves
 You have benefited from the following operations:
@@ -33,6 +35,7 @@ and you will receive:
 -------------------------------------
 Report for Britta
 
+Total expenditure is 18.37 EUR
 You have payed for the following operations:
      25.00 EUR : Vegan dinner
 You have benefited from the following operations:
@@ -49,6 +52,7 @@ and you will receive:
 -------------------------------------
 Report for Abed
 
+Total expenditure is 35.87 EUR
 You have payed for the following operations:
   (nothing)
 You have benefited from the following operations:
@@ -66,6 +70,7 @@ and you will receive:
 -------------------------------------
 Report for Jeff
 
+Total expenditure is 1.57 EUR
 You have payed for the following operations:
      30.00 EUR : Stolen exams
 You have benefited from the following operations:
@@ -79,6 +84,7 @@ and you will receive:
 -------------------------------------
 Report for Pierce
 
+Total expenditure is 3.33 EUR
 You have payed for the following operations:
   (nothing)
 You have benefited from the following operations:
@@ -93,6 +99,7 @@ and you will receive:
 -------------------------------------
 Report for Shirley
 
+Total expenditure is 10.00 EUR
 You have payed for the following operations:
      25.00 EUR : Christmas decor
 You have benefited from the following operations:
