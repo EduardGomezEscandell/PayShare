@@ -1,6 +1,7 @@
 {
     "agent_report" : [
         "Informe de $NAME\n\n",
+        "El coste total es de $TOTAL_COST\n",
         "Has pagado las siguietes operaciones:\n",
         "$OPERATIONS_PAYED",
         "Has disfrutado de las siguientes operaciones:\n",

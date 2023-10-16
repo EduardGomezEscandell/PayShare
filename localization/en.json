@@ -1,6 +1,7 @@
 {
     "agent_report" : [
         "Report for $NAME\n\n",
+        "Total expenditure is $TOTAL_COST\n",
         "You have payed for the following operations:\n",
         "$OPERATIONS_PAYED",
         "You have benefited from the following operations:\n",

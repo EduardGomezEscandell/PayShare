@@ -96,13 +96,16 @@ class Agent:
         report = report.replace("$OPERATIONS_PAYED", buffer)
         
         buffer = ""
+        total = Currency(0)
         if len(benefited_from) == 0:
             buffer += "  (" + loc["no_operation"] + ")\n"
         for op in benefited_from:
+            total += op.value_per_consumer()
             amount = str(op.value_per_consumer())
             amount = " " * (number_width - len(amount)) + amount
             buffer += "  " + amount + " " + Currency.symbol +" : " + op.description + "\n"
         report = report.replace("$OPERATIONS_CONSUMED", buffer)
+        
 
         buffer = str(self.operation_balance()) + " " + Currency.symbol
         report = report.replace("$OPERATION_BALANCE", buffer)
@@ -124,7 +127,7 @@ class Agent:
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
             buffer += "  " + amount + " " + Currency.symbol + " " + loc["to"] + " " +op.consumers[0].name + "\n"
-        report = report.replace("$CORRECTIONS_TO_PAY", buffer)
+        report = report.replace("$CORRECTIONS_TO_PAY", buffer).replace("$TOTAL_COST", f"{total} {Currency.symbol}")
 
         buffer = ""
         if len(benefited_from) == 0:
