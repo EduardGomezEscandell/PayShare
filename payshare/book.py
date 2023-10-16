@@ -65,6 +65,8 @@ class Book:
         buffer = ""
         number_width = 8
         for op in self.operations:
+            if op.value < Currency(0,1):
+                    continue
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
             consumers = ", ".join([c.name for c in op.consumers])
@@ -74,6 +76,8 @@ class Book:
 
         buffer = ""
         for op in self.corrections:
+            if op.value < Currency(0,1):
+                    continue
             amount = str(op.value)
             amount = " " * (number_width - len(amount)) + amount
             consumers = ", ".join([c.name for c in op.consumers])

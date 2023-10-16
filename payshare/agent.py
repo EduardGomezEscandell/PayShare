@@ -116,8 +116,12 @@ class Agent:
         
         for op in self.corrections:
             if self == op.payer:
+                if op.value < Currency(0,1):
+                    continue
                 payed_for.append(op)
             if self in op.consumers:
+                if op.value < Currency(0,1):
+                    continue
                 benefited_from.append(op)
         
         buffer = ""
